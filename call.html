@@ -21,7 +21,7 @@
 			crossDomain: true,
 			url: "http://127.0.0.1:8000/mysql_select",
 			success: function(res){
-				alert(res);
+				alert(JSON.stringify(res));
 			}
 		});
 
@@ -29,8 +29,8 @@
 
 		$("#send").click(function(e){
 			e.preventDefault();
-			var data = $("#sampleForm").serializeArray();
-			data = JSON.stringify(data);
+			var data = $("#sampleForm").serialize();
+			//data = JSON.stringify(data);
 			$.ajax({
 			crossDomain: true,
 			url: "http://127.0.0.1:8000/mysql_insert",

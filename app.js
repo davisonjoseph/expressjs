@@ -2,9 +2,15 @@
 
 var express = require('express');
 var mysql = require('mysql');
+var bodyParser = require("body-parser");
+
+
 
 
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 
 /* mysql connection */
@@ -30,18 +36,22 @@ app.use(function(req, res, next) {
 app.get('/mysql_select', function(request, response){
 	var strQuery = "select * from my_table";			  
 	connection.query( strQuery, function(err, rows){
-	  	//response.send({users : rows});
 	  	response.send(rows);
-	  	//response.send('sdsd');
 	  });
 });
 
 
 /* insert new user */
+
+
 app.post('/mysql_insert', function(request, response){
-	//console.log(request.body);
 	var a = request.body;
-	console.log(a.username);
+	var username = a.username;
+	var password = a.password;
+	var strQuery = "insert into my_table(username, password) values('"+username+"','"+password+"')";
+	var stat = connection.query(strQuery);
+	console.log(stat);
+
 });
 
 
