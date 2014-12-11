@@ -26,7 +26,6 @@
 		});
 
 
-
 		$("#send").click(function(e){
 			e.preventDefault();
 			var data = $("#sampleForm").serialize();
@@ -37,7 +36,7 @@
 			data: data,
 			type: "POST",		
 			success: function(result){
-				alert(result);
+				alert(JSON.stringify(result));
 			},
 			error: function(d, e){
 				alert(e);
